@@ -14,9 +14,7 @@ sudo umount -a
 mkdir -p /home/cc/container
 cc-cloudfuse mount /home/cc/container
 
-if [[ $1 = '--client' ]]; then
-	sudo yum install -y nfs-utils nfs-utils-lib
-	
+if [[ $1 = '--client' ]]; then	
 	mkdir -p /home/cc/intel
 	sudo mount -t nfs 10.140.81.187:/home/cc/intel /home/cc/intel
 
@@ -24,7 +22,7 @@ if [[ $1 = '--client' ]]; then
 	sudo mount -t nfs 10.140.81.187:/home/cc/apps /home/cc/apps
 
 	mkdir -p /home/cc/hpl
-	sudo mount -t nfs 10.140.81.187:/home/cc/hpl home/cc/hpl
+	sudo mount -t nfs 10.140.81.187:/home/cc/hpl /home/cc/hpl
 
 	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-compute-node
