@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -x
+
+setupdir=/home/cc/apps/setup
+
+# The default conf is empty.
+cat $setupdir/client-only/03-sec-limits > /etc/security/limits.conf
+
+$setupdir/02-install-munge
+
+cp /home/cc/apps/munge.key /etc/munge/munge.key
+
+# Munge OK?
+munge -n | unmunge
+
+$setupdir/07-slurm-deps
+$setupdir/08-install-slurm
+ln -s $setupdir/12-etc-slurm-slurm.conf /etc/slurm/slurm.conf
+
+cp $setupdir/client-only/06-etc-slurm-cgroup.conf /etc/slurm/cgroup.conf
+
+$setupdir/client-only/07-spawn-slurmd

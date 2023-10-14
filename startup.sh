@@ -26,5 +26,16 @@ if [[ $1 = '--client' ]]; then
 
 	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-compute-node
-fi
+elif [[ $1 = '--host' ]]; then
+	mkdir -p /home/cc/intel
+	sudo mount -t nfs 10.140.81.187:/home/cc/intel /home/cc/intel
 
+	mkdir -p /home/cc/apps
+	sudo mount -t nfs 10.140.81.187:/home/cc/apps /home/cc/apps
+
+	mkdir -p /home/cc/hpl
+	sudo mount -t nfs 10.140.81.187:/home/cc/hpl /home/cc/hpl
+
+	setupdir=/home/cc/apps/setup
+	sudo bash $setupdir/setup-head-node
+fi

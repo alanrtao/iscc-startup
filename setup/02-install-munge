@@ -1,0 +1,12 @@
+#!/bin/bash
+
+dnf install munge munge-libs munge-devel -y
+
+# /usr/sbin/create-munge-key
+
+chown -R munge: /etc/munge/ /var/log/munge/ /var/lib/munge/ /run/munge/
+
+chmod 0700 /etc/munge/ /var/log/munge/ /var/lib/munge/ /run/munge/
+chmod a+x /run/munge
+
+systemctl enable --now munge

@@ -1,0 +1,6 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1     	localhost localhost.localdomain localhost6 localhost6.localdomain6
+10.140.82.160 tp-worker-1
+10.140.82.15 tp-worker-2
+10.140.82.90 tp-worker-3
+10.140.83.240 tp-worker-4

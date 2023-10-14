@@ -1,0 +1,8 @@
+#!/bin/bash
+
+dnf install mariadb-server
+
+systemctl enable --now mariadb
+
+mysql_secure_installation
+

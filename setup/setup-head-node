@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -x 
+
+setupdir=/home/cc/apps/setup
+
+$setupdir/02-install-munge
+
+# TODO: check if no key exists
+cp /home/cc/apps/munge.key /etc/munge/munge.key
+
+munge -n | unmunge
+
+$setupdir/head-only/04-install-maria
+# Use 'HeroCommDB' as the password!
+cp $setupdir/head-only/05-my.cnf.d-innodb.cnf /etc/my.cnf.d/innodb.cnf
+$setupdir/head-only/06-restart-maria
+$setupdir/07-slurm-deps
+$setupdir/08-install-slurm
+$setupdir/head-only/09-setup-db
+cp $setupdir/head-only/10-etc-slurm-slurmdbd.conf /etc/slurm/slurmdbd.conf
+$setupdir/head-only/11-enable-slurmdbd
+cp $setupdir/12-etc-slurm-slurm.conf /etc/slurm/slurm.conf
+$setupdir/head-only/13-spawn-slurmctld

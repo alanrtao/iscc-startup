@@ -1,0 +1,9 @@
+# If prompted for a password, just hit enter
+mysql -u root -p
+
+# MariaDB [(none)]> grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'PUT A PASSWORD HERE' with grant option;
+
+# MariaDB [(none)]> create database slurm_acct_db;
+
+# MariaDB [(none)]> quit
+

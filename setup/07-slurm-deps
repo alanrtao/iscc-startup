@@ -1,0 +1,3 @@
+#!/bin/bash
+
+dnf install openssl openssl-devel pam-devel rpm-build numactl numactl-devel hwloc hwloc-devel lua lua-devel readline-devel rrdtool-devel ncurses-devel man2html libibmad libibumad mysql-devel perl-ExtUtils-MakeMaker dbus-devel -y
