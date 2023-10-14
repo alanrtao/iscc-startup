@@ -22,13 +22,10 @@ if [[ $1 = '--client' ]]; then
 	mkdir -p /home/cc/apps
 	sudo mount -t nfs 10.140.81.187:/home/cc/apps /home/cc/apps
 
-	setupdir=/home/cc/apps/setup
-
 	mkdir -p /home/cc/hpl
 	sudo mount -t nfs 10.140.81.187:/home/cc/hpl home/cc/hpl
 
+	setupdir=/home/cc/apps/setup
 	sudo $setupdir/setup-compute-node
-else
-	cat hosts | xargs -i{} bash -c "ssh-keyscan -H {} >> ~/.ssh/known_hosts"
 fi
 
