@@ -2,14 +2,14 @@
 
 set -x
 
-sudo chmod +rws /home/cc
+sudo chmod +rwx /home/cc
 
 sudo getent group munge || sudo groupadd -g 1011 munge
 sudo id -u munge || sudo useradd  -m -c "MUNGE Uid 'N' Gid Emporium" -d /var/lib/munge -u 1001 -g munge  -s /sbin/nologin munge
 sudo getent group slurm || sudo groupadd -g 1012 slurm
 sudo id -u slurm || sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u 1002 -g slurm  -s /bin/bash slurm
 
-sudo umount -a
+sudo umount /home/cc/intel /home/cc/apps /home/cc/hpl /home/my_mounting_point /home/container
 
 mkdir -p /home/cc/container
 cc-cloudfuse mount /home/cc/container
