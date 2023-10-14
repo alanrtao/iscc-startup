@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 sudo chmod +rws /home/cc
 
 sudo getent group munge || sudo groupadd -g 1011 munge
@@ -11,7 +13,6 @@ sudo umount -a
 
 mkdir -p /home/cc/container
 cc-cloudfuse mount /home/cc/container
-cp /home/cc/container/TeamPhoenix/hostfile ~/hostfile
 
 if [[ $1 = '--client' ]]; then
 	sudo yum install -y nfs-utils nfs-utils-lib
@@ -26,6 +27,6 @@ if [[ $1 = '--client' ]]; then
 	sudo mount -t nfs 10.140.81.187:/home/cc/hpl home/cc/hpl
 
 	setupdir=/home/cc/apps/setup
-	sudo $setupdir/setup-compute-node
+	sudo bash $setupdir/setup-compute-node
 fi
 
