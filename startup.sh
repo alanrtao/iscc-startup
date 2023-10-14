@@ -9,7 +9,7 @@ sudo id -u munge || sudo useradd  -m -c "MUNGE Uid 'N' Gid Emporium" -d /var/lib
 sudo getent group slurm || sudo groupadd -g 1012 slurm
 sudo id -u slurm || sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u 1002 -g slurm  -s /bin/bash slurm
 
-sudo umount /home/cc/intel /home/cc/apps /home/cc/hpl /home/my_mounting_point /home/container
+sudo umount /home/cc/intel /home/cc/apps /home/cc/hpl /home/cc/my_mounting_point /home/cc/container
 
 mkdir -p /home/cc/container
 cc-cloudfuse mount /home/cc/container
