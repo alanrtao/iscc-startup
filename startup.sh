@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo yum install -y $(cat pkglist.txt)
+
 set -x
 
 sudo chmod +rwx /home/cc
@@ -15,20 +17,28 @@ mkdir -p /home/cc/container
 cc-cloudfuse mount /home/cc/container
 
 if [[ $1 = '--client' ]]; then
+
 	mkdir -p /home/cc/intel
-	sudo mount -t nfs $(cat headip):/home/cc/intel /home/cc/intel
 	mkdir -p /home/cc/apps
+	sudo mount -t nfs $(cat headip):/home/cc/intel /home/cc/intel
 	sudo mount -t nfs $(cat headip):/home/cc/apps /home/cc/apps
 
 	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-compute-node
+ 
 elif [[ $1 = '--host' ]]; then
+
 	mkdir -p /home/cc/intel
 	mkdir -p /home/cc/apps
         tar -x -I=pigz -f ~/apps.pigz
 	tar -x -I=pigz -f ~/intel.pigz
-	echo "" | sudo tee /etc/exports
- 	exportfs -a
+
+ 	for dir in apps intel
+  	do
+		echo "/home/cc/$dir *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
+ 	done
+  
+  	exportfs -a
   	sudo systemctl restart nfs-server
 
         read -p "input HEAD ip: " $headip
@@ -47,5 +57,7 @@ elif [[ $1 = '--host' ]]; then
  	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-head-node
 
- 	echo "IP FILES HAVE BEEN UPDATED, PLEASE GIT COMMIT!"
 fi
+
+echo "IP FILES HAVE BEEN UPDATED, PLEASE GIT ADD + COMMIT!"
+cat hosts | sudo tee /etc/hosts
