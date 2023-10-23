@@ -8,9 +8,9 @@ LOCALHOST
 
 var=0
 
+echo $1 tp-head >> hosts
+
 for i in $(cat ~/apps/hostfile); do
 	var=$((var+1))
 	echo $i tp-worker-$var >> hosts
 done
-
-cat hosts | sudo tee /etc/hosts
