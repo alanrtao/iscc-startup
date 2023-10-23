@@ -9,33 +9,43 @@ sudo id -u munge || sudo useradd  -m -c "MUNGE Uid 'N' Gid Emporium" -d /var/lib
 sudo getent group slurm || sudo groupadd -g 1012 slurm
 sudo id -u slurm || sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slurm -u 1002 -g slurm  -s /bin/bash slurm
 
-sudo umount /home/cc/intel /home/cc/apps /home/cc/hpl /home/cc/my_mounting_point /home/cc/container
+sudo umount /home/cc/intel /home/cc/apps /home/cc/my_mounting_point /home/cc/container
 
 mkdir -p /home/cc/container
 cc-cloudfuse mount /home/cc/container
 
-if [[ $1 = '--client' ]]; then	
+if [[ $1 = '--client' ]]; then
 	mkdir -p /home/cc/intel
-	sudo mount -t nfs 10.140.81.187:/home/cc/intel /home/cc/intel
-
+	sudo mount -t nfs $(cat headip):/home/cc/intel /home/cc/intel
 	mkdir -p /home/cc/apps
-	sudo mount -t nfs 10.140.81.187:/home/cc/apps /home/cc/apps
-
-	mkdir -p /home/cc/hpl
-	sudo mount -t nfs 10.140.81.187:/home/cc/hpl /home/cc/hpl
+	sudo mount -t nfs $(cat headip):/home/cc/apps /home/cc/apps
 
 	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-compute-node
 elif [[ $1 = '--host' ]]; then
 	mkdir -p /home/cc/intel
-	sudo mount -t nfs 10.140.81.187:/home/cc/intel /home/cc/intel
-
 	mkdir -p /home/cc/apps
-	sudo mount -t nfs 10.140.81.187:/home/cc/apps /home/cc/apps
+        tar -x -I=pigz -f ~/apps.pigz
+	tar -x -I=pigz -f ~/intel.pigz
+	echo "" | sudo tee /etc/exports
+ 	exportfs -a
+  	sudo systemctl restart nfs-server
 
-	mkdir -p /home/cc/hpl
-	sudo mount -t nfs 10.140.81.187:/home/cc/hpl /home/cc/hpl
-
-	setupdir=/home/cc/apps/setup
+        read -p "input HEAD ip: " $headip
+	echo $headip > headip
+ 
+	echo "" > ~/apps/hostfile
+	while [[ 1 ]]; do
+		read -p "input WORKER ip in order (empty to terminate): " $workerip
+  		if [[ -z $workerip ]]; then
+  			break
+    		fi
+      		echo $workerip >> ~/apps/hostfile
+ 	done
+	./write-hosts.sh $headip
+ 
+ 	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-head-node
+
+ 	echo "IP FILES HAVE BEEN UPDATED, PLEASE GIT COMMIT!"
 fi
