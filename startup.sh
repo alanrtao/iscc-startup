@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo dnf update -y
 sudo yum install -y $(cat pkglist.txt)
 
 set -x
