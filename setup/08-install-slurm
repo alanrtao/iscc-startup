@@ -8,4 +8,4 @@ wget https://download.schedmd.com/slurm/slurm-23.02.4.tar.bz2
 # Why not get up and stretch while this is running?
 rpmbuild -ta slurm-23.02.4.tar.bz2
 
-dnf --nogpgcheck localinstall /home/cc/apps/slurm/slurm-* -y
+dnf --nogpgcheck localinstall /home/cc/apps/setup/slurm-23.02.5.tar.bz2 -y
