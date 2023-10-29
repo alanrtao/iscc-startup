@@ -28,3 +28,4 @@ unset rc
 
 module use /home/cc/apps/modulefiles
 module use /home/cc/intel/oneapi/modulefiles
+module use /home/cc/apps/cesm/modulefiles

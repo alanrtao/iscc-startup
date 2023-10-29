@@ -1,7 +1,10 @@
 # If prompted for a password, just hit enter
-mysql -u root -p
 
-# MariaDB [(none)]> grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'PUT A PASSWORD HERE' with grant option;
+setupdir=/home/cc/apps/setup
+
+mysql -u root -p < $setupdir/head-only/maria-cmds
+
+# MariaDB [(none)]> grant all on slurm_acct_db.* TO 'slurm'@'localhost' identified by 'HeroCommDB' with grant option;
 
 # MariaDB [(none)]> create database slurm_acct_db;
 
