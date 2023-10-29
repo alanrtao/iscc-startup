@@ -86,9 +86,6 @@ elif [[ $1 = '--host' ]]; then
   
 	sudo bash $setupdir/setup-head-node
 
- 	git add
-  	git commit -m "auto commit"
-
 	cat hosts | sudo tee /etc/hosts
 	cat bashrc > /home/cc/.bashrc
  fi
