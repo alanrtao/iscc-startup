@@ -13,10 +13,10 @@ sudo id -u slurm || sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slu
 
 sudo umount /home/cc/intel /home/cc/apps /home/cc/my_mounting_point /home/cc/container
 
-mkdir -p /home/cc/container
-cc-cloudfuse mount /home/cc/container
-
 if [[ $1 = '--client' ]]; then
+
+ 	cat hosts | sudo tee /etc/hosts
+	cat bashrc > /home/cc/.bashrc
 
 	mkdir -p /home/cc/intel
 	mkdir -p /home/cc/apps
@@ -46,6 +46,9 @@ elif [[ $1 = '--host' ]]; then
 
 	prevpwd=$PWD
         cd ~/apps
+
+ 	git clone https://github.com/alanrtao/CESM-Assignment
+  	mv CESM-Assignment cesm
 	
  	./scripts/install_autoconf_global.sh
 	./scripts/install_cmake_global.sh
@@ -68,8 +71,11 @@ elif [[ $1 = '--host' ]]; then
  	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-head-node
 
-fi
+ 	git add
+  	git commit -m "auto commit"
 
-echo "IP FILES HAVE BEEN UPDATED, PLEASE GIT ADD + COMMIT!"
-cat hosts | sudo tee /etc/hosts
-cat bashrc > /home/cc/.bashrc
+	cat hosts | sudo tee /etc/hosts
+	cat bashrc > /home/cc/.bashrc
+
+ 	pssh -h ~/apps/hostfile -l cc -i bash -c 'cd /home/cc; rm -rf iscc-startup; git clone https://github.com/alanrtao/iscc-startup; cd iscc-startup; chmod +x startup.sh; ./startup.sh --client' | tee pssh.log
+fi
