@@ -55,19 +55,9 @@ elif [[ $1 = '--host' ]]; then
 	./scripts/install_cmake_global.sh
 
  	cd $prevpwd
-
-        read -p "input HEAD ip: " headip
-	echo $headip > headip
  
-	echo "" > ~/apps/hostfile
-	while [[ 1 ]]; do
-		read -p "input WORKER ip in order (empty to terminate): " workerip
-  		if [[ -z $workerip ]]; then
-  			break
-    		fi
-      		echo $workerip >> ~/apps/hostfile
- 	done
-	./write-hosts.sh $headip
+	cp workers ~/apps/hostfile
+	./write-hosts.sh $(cat headip)
 
 	source bashrc
 
