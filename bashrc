@@ -31,7 +31,8 @@ module use /home/cc/intel/oneapi/modulefiles
 module use /home/cc/apps/cesm/modulefiles
 
 if [[ -f ~/TP.pem ]]; then
-        chmod 0400 ~/TP.pem
+        chmod 0600 ~/TP.pem
+        chmod 0600 ~/.ssh/TP.pem
         cp ~/TP.pem ~/.ssh/TP.pem
         eval `ssh-agent -s`
         ssh-add ~/.ssh/TP.pem
