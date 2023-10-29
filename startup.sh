@@ -1,5 +1,7 @@
 #!/bin/bash
 
+prevpwd=$PWD
+
 sudo dnf update -y
 sudo yum install --skip-broken -y $(cat pkglist.txt)
 
@@ -45,7 +47,6 @@ elif [[ $1 = '--host' ]]; then
   	exportfs -a
   	sudo systemctl restart nfs-server
 
-	prevpwd=$PWD
         cd ~/apps
 
  	git clone https://github.com/alanrtao/CESM-Assignment
@@ -71,9 +72,14 @@ elif [[ $1 = '--host' ]]; then
 	for ip in $(cat hosts); do
 		scp /home/cc/.ssh/TP.pem cc@$(ip):/home/cc/.ssh/
 	done
- 
- 	setupdir=/home/cc/iscc-startup/setup
+
+ 	mv setup /home/cc/apps/setup
+
+ 	cd /home/cc/apps
+ 	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-head-node
+
+	cd $prevpwd
 
  	git add
   	git commit -m "auto commit"
