@@ -71,7 +71,6 @@ elif [[ $1 = '--host' ]]; then
  	cd $prevpwd
  
 	cp workers ~/apps/hostfile
- 	echo $PWD > ~/lmao
 	./write-hosts.sh $(cat headip)
 	cat hosts | sudo tee /etc/hosts
 	# cat bashrc > /home/cc/.bashrc
@@ -79,9 +78,9 @@ elif [[ $1 = '--host' ]]; then
 	source bashrc
 
 	for ip in $(cat workers); do
- 		chown 0644 /home/cc/TP.pem
-		scp /home/cc/TP.pem cc@${ip}:/home/cc/.ssh/
-  		# TODO: copy generated hostfile
+ 		sudo chmod 0644 /home/cc/TP.pem
+		scp /home/cc/TP.pem cc@${ip}:/home/cc/
+  		scp /home/cc/hosts cc@${ip}:/home/cc/
 	done
  
  	setupdir=/home/cc/apps/setup
