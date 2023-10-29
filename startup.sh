@@ -74,7 +74,7 @@ elif [[ $1 = '--host' ]]; then
  	echo $PWD > ~/lmao
 	./write-hosts.sh $(cat headip)
 	cat hosts | sudo tee /etc/hosts
-	cat bashrc > /home/cc/.bashrc
+	# cat bashrc > /home/cc/.bashrc
 
 	source bashrc
 
