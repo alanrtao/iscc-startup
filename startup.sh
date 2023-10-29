@@ -39,6 +39,9 @@ elif [[ $1 = '--host' ]]; then
 	tar -x -I pigz -f ~/intel.tar.gz -C ~
  	tar -x -I pigz -f ~/cime.tar.gz -C ~/.cime
 
+	sudo rm -rf /etc/exports
+ 	sudo touch /etc/exports
+
  	for dir in apps intel
   	do
 		echo "/home/cc/$dir *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
