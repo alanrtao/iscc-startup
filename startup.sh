@@ -76,7 +76,7 @@ elif [[ $1 = '--host' ]]; then
 	source bashrc
 
 	for ip in $(cat workers); do
-		scp /home/cc/.ssh/TP.pem cc@${ip}:/home/cc/.ssh/
+		scp /home/cc/TP.pem cc@${ip}:/home/cc/.ssh/
 	done
  
  	setupdir=/home/cc/apps/setup
