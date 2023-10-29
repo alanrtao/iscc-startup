@@ -67,6 +67,12 @@ elif [[ $1 = '--host' ]]; then
       		echo $workerip >> ~/apps/hostfile
  	done
 	./write-hosts.sh $headip
+
+	source bashrc
+
+	for ip in $(cat hosts) do
+		scp /home/cc/.ssh/TP.pem cc@$(ip):/home/cc/.ssh/
+	done
  
  	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-head-node
