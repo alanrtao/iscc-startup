@@ -72,6 +72,8 @@ elif [[ $1 = '--host' ]]; then
  
 	cp workers ~/apps/hostfile
 	./write-hosts.sh $(cat headip)
+	cat hosts | sudo tee /etc/hosts
+	cat bashrc > /home/cc/.bashrc
 
 	source bashrc
 
@@ -85,8 +87,5 @@ elif [[ $1 = '--host' ]]; then
 	rm -rf $setupdir
  	cp -r setup /home/cc/apps
   
-	sudo bash $setupdir/setup-head-node
-
-	cat hosts | sudo tee /etc/hosts
-	cat bashrc > /home/cc/.bashrc
+	# sudo bash $setupdir/setup-head-node
  fi
