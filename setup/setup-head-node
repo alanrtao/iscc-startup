@@ -2,7 +2,7 @@
 
 set -x 
 
-setupdir=/home/cc/iscc-startup/setup
+setupdir=/home/cc/apps/setup
 
 $setupdir/02-install-munge --host
 

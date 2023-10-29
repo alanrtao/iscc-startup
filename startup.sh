@@ -26,7 +26,7 @@ if [[ $1 = '--client' ]]; then
 	sudo mount -t nfs $(cat headip):/home/cc/intel /home/cc/intel
 	sudo mount -t nfs $(cat headip):/home/cc/apps /home/cc/apps
 
-	setupdir=/home/cc/iscc-startup/setup
+	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-compute-node
  
 elif [[ $1 = '--host' ]]; then
@@ -76,6 +76,7 @@ elif [[ $1 = '--host' ]]; then
  	mv setup /home/cc/apps/setup
 
  	cd /home/cc/apps
+ 
  	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-head-node
 
