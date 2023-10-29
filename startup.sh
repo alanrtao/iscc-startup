@@ -75,7 +75,7 @@ elif [[ $1 = '--host' ]]; then
 
 	source bashrc
 
-	for ip in $(cat hosts); do
+	for ip in $(cat workers); do
 		scp /home/cc/.ssh/TP.pem cc@${ip}:/home/cc/.ssh/
 	done
  
