@@ -1,7 +1,9 @@
 #!/bin/bash
 
 sudo dnf update -y
-sudo yum install -y $(cat pkglist.txt)
+for pkg in $(cat pkglist.txt); do
+	sudo yum install -y $pkg
+done
 
 set -x
 
@@ -61,7 +63,7 @@ elif [[ $1 = '--host' ]]; then
  
 	echo "" > ~/apps/hostfile
 	while [[ 1 ]]; do
-		read -p "input WORKER ip in order (empty to terminate): " $workerip
+		read -p "input WORKER ip in order (empty to terminate): " workerip
   		if [[ -z $workerip ]]; then
   			break
     		fi
