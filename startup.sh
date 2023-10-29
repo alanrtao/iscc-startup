@@ -24,7 +24,7 @@ if [[ $1 = '--client' ]]; then
 	sudo mount -t nfs $(cat headip):/home/cc/intel /home/cc/intel
 	sudo mount -t nfs $(cat headip):/home/cc/apps /home/cc/apps
 
-	setupdir=/home/cc/apps/setup
+	setupdir=/home/cc/iscc-startup/setup
 	sudo bash $setupdir/setup-compute-node
  
 elif [[ $1 = '--host' ]]; then
@@ -65,7 +65,7 @@ elif [[ $1 = '--host' ]]; then
 		scp /home/cc/.ssh/TP.pem cc@$(ip):/home/cc/.ssh/
 	done
  
- 	setupdir=/home/cc/apps/setup
+ 	setupdir=/home/cc/iscc-startup/setup
 	sudo bash $setupdir/setup-head-node
 
  	git add

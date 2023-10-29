@@ -1,6 +1,6 @@
 # If prompted for a password, just hit enter
 
-setupdir=/home/cc/apps/setup
+setupdir=/home/cc/iscc-startup/setup
 
 mysql -u root -p < $setupdir/head-only/maria-cmds
 
