@@ -74,8 +74,12 @@ elif [[ $1 = '--host' ]]; then
 	done
  
  	cd /home/cc/apps
- 
+
  	setupdir=/home/cc/apps/setup
+
+	rm -rf $setupdir
+ 	cp -r setup /home/cc/apps
+  
 	sudo bash $setupdir/setup-head-node
 
 	cd $prevpwd
