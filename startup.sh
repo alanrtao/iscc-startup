@@ -71,6 +71,7 @@ elif [[ $1 = '--host' ]]; then
  	cd $prevpwd
  
 	cp workers ~/apps/hostfile
+ 	echo $PWD > ~/lmao
 	./write-hosts.sh $(cat headip)
 	cat hosts | sudo tee /etc/hosts
 	cat bashrc > /home/cc/.bashrc
