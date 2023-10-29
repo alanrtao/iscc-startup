@@ -92,5 +92,5 @@ elif [[ $1 = '--host' ]]; then
 	rm -rf $setupdir
  	cp -r setup /home/cc/apps
   
-	# sudo bash $setupdir/setup-head-node
+	sudo bash $setupdir/setup-head-node
  fi
