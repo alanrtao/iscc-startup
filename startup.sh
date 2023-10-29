@@ -34,11 +34,14 @@ elif [[ $1 = '--host' ]]; then
 	mkdir -p /home/cc/intel
 	mkdir -p /home/cc/apps
 	mkdir -p /home/cc/.cime
- 
-        tar -x -I pigz -f ~/apps.tar.gz -C ~
-	tar -x -I pigz -f ~/intel.tar.gz -C ~
- 	tar -x -I pigz -f ~/cime.tar.gz -C ~/.cime
 
+	read -p "extract tarball? (y/n): " ext_tb
+ 	if [[ $ext_tb = 'y' ]]; then
+        	tar -x -I pigz -f ~/apps.tar.gz -C ~
+		tar -x -I pigz -f ~/intel.tar.gz -C ~
+ 		tar -x -I pigz -f ~/cime.tar.gz -C ~/.cime
+  	fi
+   
 	sudo rm -rf /etc/exports
  	sudo touch /etc/exports
 
