@@ -50,9 +50,16 @@ elif [[ $1 = '--host' ]]; then
 
  	git clone https://github.com/alanrtao/CESM-Assignment
   	mv CESM-Assignment cesm
-	
- 	./scripts/install_autoconf_global.sh
-	./scripts/install_cmake_global.sh
+
+ 	read -p "install autoconf? (y/n): " inst_ac
+  	if [[ $inst_ac = 'y' ]]; then
+ 		./scripts/install_autoconf_global.sh
+	fi
+
+ 	read -p "install cmake? (y/n): " inst_cm
+  	if [[ $inst_cm = 'y' ]]; then
+ 		./scripts/install_cmake_global.sh
+ 	fi
 
  	cd $prevpwd
  
