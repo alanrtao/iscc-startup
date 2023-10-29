@@ -33,8 +33,8 @@ elif [[ $1 = '--host' ]]; then
 	mkdir -p /home/cc/apps
 	mkdir -p /home/cc/.cime
  
-        tar -x -I pigz -f ~/apps.tar.gz
-	tar -x -I pigz -f ~/intel.tar.gz
+        tar -x -I pigz -f ~/apps.tar.gz -C ~
+	tar -x -I pigz -f ~/intel.tar.gz -C ~
  	tar -x -I pigz -f ~/cime.tar.gz -C ~/.cime
 
  	for dir in apps intel
@@ -56,7 +56,7 @@ elif [[ $1 = '--host' ]]; then
 
  	cd $prevpwd
 
-        read -p "input HEAD ip: " $headip
+        read -p "input HEAD ip: " headip
 	echo $headip > headip
  
 	echo "" > ~/apps/hostfile
