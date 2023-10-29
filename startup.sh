@@ -21,6 +21,10 @@ if [[ $1 = '--client' ]]; then
  	cat hosts | sudo tee /etc/hosts
 	cat bashrc > /home/cc/.bashrc
 
+ 	sudo cp /home/cc/hosts /etc/hosts
+  	cp /home/cc/TP.pem /home/cc/.ssh/TP.pem
+   	source bashrc
+
 	mkdir -p /home/cc/intel
 	mkdir -p /home/cc/apps
 	sudo mount -t nfs $(cat headip):/home/cc/intel /home/cc/intel
