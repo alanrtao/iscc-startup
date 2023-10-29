@@ -29,3 +29,12 @@ unset rc
 module use /home/cc/apps/modulefiles
 module use /home/cc/intel/oneapi/modulefiles
 module use /home/cc/apps/cesm/modulefiles
+
+if [[ -f ~/TP.pem ]]; then
+        chmod 0400 ~/TP.pem
+        cp ~/TP.pem ~/.ssh/TP.pem
+        eval `ssh-agent -s`
+        ssh-keyadd ~/.ssh/TP.pem
+else
+        echo "Couldn't find TP pem in home directory"
+fi
