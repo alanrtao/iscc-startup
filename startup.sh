@@ -69,6 +69,4 @@ fi
 
 echo "IP FILES HAVE BEEN UPDATED, PLEASE GIT ADD + COMMIT!"
 cat hosts | sudo tee /etc/hosts
-
-module use /home/cc/apps/modulefiles
-module use /home/cc/intel/oneapi/modulefiles
+cat bashrc > /home/cc/.bashrc
