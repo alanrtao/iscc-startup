@@ -79,6 +79,7 @@ elif [[ $1 = '--host' ]]; then
 	source bashrc
 
 	for ip in $(cat workers); do
+ 		chown 0644 /home/cc/TP.pem
 		scp /home/cc/TP.pem cc@${ip}:/home/cc/.ssh/
   		# TODO: copy generated hostfile
 	done
