@@ -41,6 +41,14 @@ elif [[ $1 = '--host' ]]; then
   	exportfs -a
   	sudo systemctl restart nfs-server
 
+	prevpwd=$PWD
+        cd ~/apps
+	
+ 	./scripts/install_autoconf_global.sh
+	./scripts/install_cmake_global.sh
+
+ 	cd $prevpwd
+
         read -p "input HEAD ip: " $headip
 	echo $headip > headip
  
