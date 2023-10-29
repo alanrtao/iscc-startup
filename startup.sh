@@ -77,6 +77,7 @@ elif [[ $1 = '--host' ]]; then
 
 	for ip in $(cat workers); do
 		scp /home/cc/TP.pem cc@${ip}:/home/cc/.ssh/
+  		# TODO: copy generated hostfile
 	done
  
  	setupdir=/home/cc/apps/setup
