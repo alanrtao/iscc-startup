@@ -1,8 +1,12 @@
 #!/bin/bash
 
+flag=$1
+
 dnf install munge munge-libs munge-devel -y
 
-# /usr/sbin/create-munge-key
+if [[ $flag = '--host' ]]; then
+	/usr/sbin/create-munge-key
+fi
 
 chown -R munge: /etc/munge/ /var/log/munge/ /var/lib/munge/ /run/munge/
 

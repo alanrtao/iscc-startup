@@ -4,7 +4,7 @@ set -x
 
 setupdir=/home/cc/apps/setup
 
-$setupdir/02-install-munge
+$setupdir/02-install-munge --host
 
 # TODO: check if no key exists
 cp /home/cc/apps/munge.key /etc/munge/munge.key
