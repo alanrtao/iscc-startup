@@ -72,9 +72,7 @@ elif [[ $1 = '--host' ]]; then
 	for ip in $(cat hosts); do
 		scp /home/cc/.ssh/TP.pem cc@$(ip):/home/cc/.ssh/
 	done
-
- 	mv setup /home/cc/apps/setup
-
+ 
  	cd /home/cc/apps
  
  	setupdir=/home/cc/apps/setup
