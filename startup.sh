@@ -76,6 +76,4 @@ elif [[ $1 = '--host' ]]; then
 
 	cat hosts | sudo tee /etc/hosts
 	cat bashrc > /home/cc/.bashrc
-
- 	pssh -h ~/apps/hostfile -l cc -i bash -c 'cd /home/cc; rm -rf iscc-startup; git clone https://github.com/alanrtao/iscc-startup; cd iscc-startup; chmod +x startup.sh; ./startup.sh --client' | tee pssh.log
-fi
+ fi
