@@ -84,7 +84,7 @@ elif [[ $1 = '--host' ]]; then
 	for ip in $(cat workers); do
  		sudo chmod 0644 /home/cc/TP.pem
 		scp /home/cc/TP.pem cc@${ip}:/home/cc/
-  		scp /home/cc/hosts cc@${ip}:/home/cc/
+  		scp hosts cc@${ip}:/home/cc/
 	done
  
  	setupdir=/home/cc/apps/setup
