@@ -30,6 +30,8 @@ module use /home/cc/apps/modulefiles
 module use /home/cc/intel/oneapi/modulefiles
 module use /home/cc/apps/cesm/modulefiles
 
+ulimit -s unlimited
+
 if [[ -f ~/TP.pem ]]; then
         chmod 0600 ~/.ssh/TP.pem
         cp ~/TP.pem ~/.ssh/TP.pem

@@ -1,5 +1,0 @@
-127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
-::1     	localhost localhost.localdomain localhost6 localhost6.localdomain6
-10.0.0.109 tp-head
-10.0.0.193 tp-worker-1
-10.0.0.144 tp-worker-2

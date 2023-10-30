@@ -19,6 +19,7 @@ sudo umount /home/cc/intel /home/cc/apps /home/cc/my_mounting_point /home/cc/con
 
 if [[ $1 = '--client' ]]; then
 
+	./write-hosts.sh $(cat headip)
  	cat hosts | sudo tee /etc/hosts
 	cat bashrc > /home/cc/.bashrc
 
@@ -98,4 +99,6 @@ elif [[ $1 = '--host' ]]; then
  	cp -r setup /home/cc/apps
   
 	sudo bash $setupdir/setup-head-node
+
+	sudo systemctl start slurmd
  fi
