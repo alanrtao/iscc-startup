@@ -15,7 +15,7 @@ munge -n | unmunge
 
 $setupdir/head-only/04-install-maria
 # Use 'HeroCommDB' as the password!
-cp $setupdir/head-only/05-my.cnf.d-innodb.cnf /etc/my.cnf.d/innodb.cnf
+cp $setupdir/head-only/05-etc-my.cnf.d-innodb.cnf /etc/my.cnf.d/innodb.cnf
 $setupdir/head-only/06-restart-maria
 $setupdir/07-slurm-deps
 $setupdir/08-install-slurm

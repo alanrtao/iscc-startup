@@ -95,9 +95,9 @@ elif [[ $1 = '--host' ]]; then
 
 	sudo chmod 0644 /home/cc/TP.pem
 	for ip in $(cat workers); do
-		scp /home/cc/TP.pem cc@${ip}:/home/cc/
-  		scp hosts cc@${ip}:/home/cc/
-		scp bashrc cc@${ip}:/home/cc/.bashrc
+		yes | scp /home/cc/TP.pem cc@${ip}:/home/cc/
+  		yes | scp hosts cc@${ip}:/home/cc/
+		yes | scp bashrc cc@${ip}:/home/cc/.bashrc
 	done
  
  	setupdir=/home/cc/apps/setup
