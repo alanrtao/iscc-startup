@@ -37,6 +37,9 @@ if [[ $1 = '--client' ]]; then
 	sudo mount -t nfs $(cat headip):/home/cc/intel /home/cc/intel
 	sudo mount -t nfs $(cat headip):/home/cc/apps /home/cc/apps
 
+	rm -rf /home/cc/apps/setup
+	cp -r setup /home/cc/apps
+
 	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-compute-node
  
