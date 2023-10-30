@@ -9,4 +9,4 @@ systemctl enable --now slurmd.service
 
 # Make sure everything is active
 
-systemctl status slurmd
+systemctl status --no-pager slurmd

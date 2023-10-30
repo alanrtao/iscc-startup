@@ -1,9 +1,9 @@
 #!/bin/bash
 
-mkdir /var/spool/slurmd
+mkdir -p /var/spool/slurmd
 
 chown slurm:slurm /var/spool/slurmd
 
 systemctl enable --now slurmctld.service
 
-systemctl status slurmctld
+systemctl status --no-pager slurmctld
