@@ -23,7 +23,11 @@ if [[ $1 = '--client' ]]; then
 
  	sudo cp /home/cc/hosts /etc/hosts
   	cp /home/cc/TP.pem /home/cc/.ssh/TP.pem
-   	source bashrc
+
+	sudo rm /usr/bin/python
+	sudo ln -s /usr/bin/python3 /usr/bin/python
+
+	source bashrc
 
 	mkdir -p /home/cc/intel
 	mkdir -p /home/cc/apps
@@ -59,9 +63,6 @@ elif [[ $1 = '--host' ]]; then
 
         cd ~/apps
 
- 	git clone https://github.com/alanrtao/CESM-Assignment
-  	mv CESM-Assignment cesm
-
  	read -p "install autoconf? (y/n): " inst_ac
   	if [[ $inst_ac = 'y' ]]; then
  		./scripts/install_autoconf_global.sh
@@ -71,6 +72,9 @@ elif [[ $1 = '--host' ]]; then
   	if [[ $inst_cm = 'y' ]]; then
  		./scripts/install_cmake_global.sh
  	fi
+
+	sudo rm /usr/bin/python
+	sudo ln -s /usr/bin/python3 /usr/bin/python
 
  	cd $prevpwd
  
