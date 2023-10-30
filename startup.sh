@@ -17,28 +17,22 @@ sudo id -u slurm || sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slu
 
 sudo umount /home/cc/intel /home/cc/apps /home/cc/my_mounting_point /home/cc/container
 
+sudo rm /usr/bin/python
+sudo ln -s /usr/bin/python3 /usr/bin/python
+
 if [[ $1 = '--client' ]]; then
 	cd $prevpwd
 
-	./write-hosts.sh $(cat headip)
- 	sudo cp hosts /etc/hosts
-	cat bashrc > /home/cc/.bashrc
-
  	sudo cp /home/cc/hosts /etc/hosts
   	cp /home/cc/TP.pem /home/cc/.ssh/TP.pem
-
-	sudo rm /usr/bin/python
-	sudo ln -s /usr/bin/python3 /usr/bin/python
-
+	
+	cat bashrc > /home/cc/.bashrc
 	source bashrc
 
 	mkdir -p /home/cc/intel
 	mkdir -p /home/cc/apps
-	sudo mount -t nfs $(cat headip):/home/cc/intel /home/cc/intel
-	sudo mount -t nfs $(cat headip):/home/cc/apps /home/cc/apps
-
-	rm -rf /home/cc/apps/setup
-	cp -r setup /home/cc/apps
+	sudo mount -t nfs $(head -1 workers):/home/cc/intel /home/cc/intel
+	sudo mount -t nfs $(head -1 workers):/home/cc/apps /home/cc/apps
 
 	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-compute-node
@@ -87,7 +81,8 @@ elif [[ $1 = '--host' ]]; then
  	cd $prevpwd
  
 	cp workers ~/apps/hostfile
-	./write-hosts.sh $(cat headip)
+	./write-hosts.sh
+
 	cat hosts | sudo tee /etc/hosts
 	cat bashrc > /home/cc/.bashrc
 

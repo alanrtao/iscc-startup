@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ml purge
+
+ml openmpi-gcc libfabric-gcc
+
+for p in $(seq 1 $1); do
+	for q in $(seq 1 $1); do
+		srun --ntasks-per-node=1 --nodelist=tp-$p,tp-$q /home/cc/apps/osu-micro-benchmarks-7.2/c/mpi/pt2pt/standard/osu_bw
+	done
+done
+
