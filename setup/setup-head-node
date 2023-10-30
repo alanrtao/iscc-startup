@@ -6,6 +6,8 @@ setupdir=/home/cc/apps/setup
 
 $setupdir/02-install-munge --host
 
+cat $setupdir/03-etc-security-limits.conf | sudo tee /etc/security/limits.conf
+
 # TODO: check if no key exists
 cp /home/cc/apps/munge.key /etc/munge/munge.key
 

@@ -4,6 +4,7 @@ prevpwd=$PWD
 
 sudo dnf update -y
 sudo yum install --skip-broken -y $(cat pkglist.txt)
+yes | sudo cpan -i XML::LibXML
 
 set -x
 
@@ -47,7 +48,7 @@ elif [[ $1 = '--host' ]]; then
  	if [[ $ext_tb = 'y' ]]; then
         	tar -x -I pigz -f ~/apps.tar.gz -C ~
 		tar -x -I pigz -f ~/intel.tar.gz -C ~
- 		tar -x -I pigz -f ~/cime.tar.gz -C ~/.cime
+ 		tar -x -I pigz -f ~/cime.tar.gz -C ~
   	fi
    
 	sudo rm -rf /etc/exports

@@ -5,7 +5,7 @@ set -x
 setupdir=/home/cc/apps/setup
 
 # The default conf is empty.
-cat $setupdir/client-only/03-etc-security-limits.conf > /etc/security/limits.conf
+cat $setupdir/03-etc-security-limits.conf | sudo tee /etc/security/limits.conf
 
 $setupdir/02-install-munge
 
