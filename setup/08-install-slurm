@@ -4,7 +4,7 @@
 
 rm -rf slurm*.bz2
 
-read -p "build slurm? (y/n): " inst
+read -p "build slurm? (y/n): " -t 5 inst
 
 if [[ $inst = 'y' ]]; then
 	wget https://download.schedmd.com/slurm/slurm-23.02.4.tar.bz2
@@ -15,4 +15,4 @@ if [[ $inst = 'y' ]]; then
 	sudo ls /root/rpmbuild/RPMS/x86_64 | xargs -i{} sudo cp /root/rpmbuild/RPMS/x86_64/{} /home/cc/apps/slurm
 fi
 
-dnf -y --nogpgcheck localinstall /home/cc/apps/slurm/slurm-*
+dnf --nogpgcheck localinstall -y /home/cc/apps/slurm/slurm-*
