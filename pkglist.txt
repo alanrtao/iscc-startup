@@ -1,3 +1,4 @@
+pssh
 libuuid-devel
 libpsm2-devel
 libpsm2

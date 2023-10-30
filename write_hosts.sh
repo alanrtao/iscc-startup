@@ -8,9 +8,7 @@ LOCALHOST
 
 var=0
 
-echo $1 tp-head >> hosts
-
-for i in $(cat ~/apps/hostfile); do
+for i in $1 $(cat ~/apps/hostfile); do
 	var=$((var+1))
-	echo $i tp-worker-$var >> hosts
+	echo $i tp-$var >> hosts
 done
