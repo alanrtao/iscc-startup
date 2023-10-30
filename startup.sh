@@ -18,9 +18,10 @@ sudo id -u slurm || sudo useradd  -m -c "SLURM workload manager" -d /var/lib/slu
 sudo umount /home/cc/intel /home/cc/apps /home/cc/my_mounting_point /home/cc/container
 
 if [[ $1 = '--client' ]]; then
+	cd $prevpwd
 
 	./write-hosts.sh $(cat headip)
- 	cat hosts | sudo tee /etc/hosts
+ 	sudo cp hosts /etc/hosts
 	cat bashrc > /home/cc/.bashrc
 
  	sudo cp /home/cc/hosts /etc/hosts
@@ -40,6 +41,8 @@ if [[ $1 = '--client' ]]; then
 	sudo bash $setupdir/setup-compute-node
  
 elif [[ $1 = '--host' ]]; then
+
+	cd $prevpwd
 
 	mkdir -p /home/cc/intel
 	mkdir -p /home/cc/apps
