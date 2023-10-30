@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pssh -h ~/apps/hostfile -l cc -i bash -c $(cat pssh_msg)
