@@ -83,14 +83,15 @@ elif [[ $1 = '--host' ]]; then
 	cp workers ~/apps/hostfile
 	./write-hosts.sh $(cat headip)
 	cat hosts | sudo tee /etc/hosts
-	# cat bashrc > /home/cc/.bashrc
+	cat bashrc > /home/cc/.bashrc
 
 	source bashrc
 
+	sudo chmod 0644 /home/cc/TP.pem
 	for ip in $(cat workers); do
- 		sudo chmod 0644 /home/cc/TP.pem
 		scp /home/cc/TP.pem cc@${ip}:/home/cc/
   		scp hosts cc@${ip}:/home/cc/
+		scp bashrc cc@${ip}:/home/cc/.bashrc
 	done
  
  	setupdir=/home/cc/apps/setup

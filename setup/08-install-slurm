@@ -3,13 +3,16 @@
 # Do not use this script unless you don't want to build slurm yourself!
 
 rm -rf slurm*.bz2
-wget https://download.schedmd.com/slurm/slurm-23.02.4.tar.bz2
 
+read -p "build slurm? (y/n): " inst
+
+if [[ $inst = 'y' ]]; then
+	wget https://download.schedmd.com/slurm/slurm-23.02.4.tar.bz2
 # This will take a minute... now is a great time for a break!
 # Why not get up and stretch while this is running?
-rpmbuild -ta slurm-23.02.4.tar.bz2
+	rpmbuild -ta slurm-23.02.4.tar.bz2
+	mkdir -p /home/cc/apps/slurm
+	sudo ls /root/rpmbuild/RPMS/x86_64 | xargs -i{} sudo cp /root/rpmbuild/RPMS/x86_64/{} /home/cc/apps/slurm
+fi
 
-mkdir -p /home/cc/apps/slurm
-sudo ls /root/rpmbuild/RPMS/x86_64 | xargs -i{} sudo cp /root/rpmbuild/RPMS/x86_64/{} /home/cc/apps/slurm
-
-dnf --nogpgcheck localinstall /home/cc/apps/slurm/slurm-*
+dnf -y --nogpgcheck localinstall /home/cc/apps/slurm/slurm-*

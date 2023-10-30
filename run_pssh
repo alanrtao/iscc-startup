@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pssh -h ~/apps/hostfile -l cc -i bash -c 'cd /home/cc; git clone https://github.com/alanrtao/iscc-startup; cd iscc-startup; chmod +x startup.sh; ./startup.sh --client' | tee pssh.log
+pssh -h ~/apps/hostfile -l cc -i bash -c 'cd /home/cc; rm -rf iscc-startup; git clone https://github.com/alanrtao/iscc-startup; cd iscc-startup; chmod +x startup.sh; ./startup.sh --client' | tee pssh.log
