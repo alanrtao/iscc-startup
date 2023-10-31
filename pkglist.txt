@@ -366,6 +366,7 @@ subversion-libs
 sssd-client
 sscg
 rpm-plugin-systemd-inhibit
+#nfs server on centos
 nfs-utils
 libkadm5
 gssproxy
