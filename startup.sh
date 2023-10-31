@@ -1,4 +1,5 @@
 #!/bin/bash
+#setup client and head are executed within startup
 
 prevpwd=$PWD
 
