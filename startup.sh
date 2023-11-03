@@ -50,6 +50,7 @@ elif [[ $1 = '--host' ]]; then
         	tar -x -I pigz -f ~/apps.tar.gz -C ~
 		tar -x -I pigz -f ~/intel.tar.gz -C ~
  		tar -x -I pigz -f ~/cime.tar.gz -C ~
+                tar -x -I pigz -f ~/cesm.tar.gz -C ~/apps
   	fi
    
 	sudo rm -rf /etc/exports
