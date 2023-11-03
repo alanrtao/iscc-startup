@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo mount -t nfs $(cat headip):/home/cc/intel /home/cc/intel
+sudo mount -t nfs $(cat headip):/home/cc/apps /home/cc/apps
+
+sudo systemctl restart slurmd
+systemctl status slurmd
