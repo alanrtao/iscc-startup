@@ -33,6 +33,7 @@ if [[ $1 = '--client' ]]; then
 	mkdir -p /home/cc/apps
 	sudo mount -t nfs $(head -1 workers):/home/cc/intel /home/cc/intel
 	sudo mount -t nfs $(head -1 workers):/home/cc/apps /home/cc/apps
+        sudo mount -t nfs $(head -1 workers):/home/cc/.cime /home/cc/.cime
 
 	setupdir=/home/cc/apps/setup
 	sudo bash $setupdir/setup-compute-node
@@ -56,7 +57,7 @@ elif [[ $1 = '--host' ]]; then
 	sudo rm -rf /etc/exports
  	sudo touch /etc/exports
 
- 	for dir in apps intel
+ 	for dir in apps intel .cime
   	do
 		echo "/home/cc/$dir *(rw,sync,no_subtree_check,no_root_squash)" | sudo tee -a /etc/exports
  	done
