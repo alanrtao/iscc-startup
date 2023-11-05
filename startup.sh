@@ -26,8 +26,8 @@ if [[ $1 = '--client' ]]; then
  	sudo cp /home/cc/hosts /etc/hosts
   	cp /home/cc/TP.pem /home/cc/.ssh/TP.pem
 	
-	cat bashrc > /home/cc/.bashrc
-	source bashrc
+	#cat bashrc > /home/cc/.bashrc
+	#source bashrc
 
 	mkdir -p /home/cc/intel
 	mkdir -p /home/cc/apps
@@ -36,7 +36,7 @@ if [[ $1 = '--client' ]]; then
         sudo mount -t nfs $(head -1 workers):/home/cc/.cime /home/cc/.cime
 
 	setupdir=/home/cc/apps/setup
-	sudo bash $setupdir/setup-compute-node
+	#sudo bash $setupdir/setup-compute-node
  
 elif [[ $1 = '--host' ]]; then
 
